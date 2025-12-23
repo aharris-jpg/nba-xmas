@@ -1,0 +1,131 @@
+<style>
+  /* =========================
+     IN-ARTICLE IMAGE MODULE
+     Christmas editorial theme
+     ========================= */
+
+  :root{
+    --green: #14532d;
+    --red: #991b1b;
+    --ink: #0f172a;
+    --muted: #64748b;
+    --border: #e5e7eb;
+    --row: #f8fafc;
+  }
+
+  .xmas-figure {
+    max-width: 900px;
+    margin: 18px auto 22px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  .xmas-figure-frame {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(2, 6, 23, 0.06);
+  }
+
+  .xmas-figure-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  /* Dark-arena vignette with restrained Christmas tint */
+  .xmas-figure-frame::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        120% 85% at 50% 50%,
+        rgba(0,0,0,0) 38%,
+        rgba(0,0,0,0.38) 100%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(20,83,45,0.08) 0%,
+        rgba(153,27,27,0.08) 100%
+      );
+    opacity: 0.55;
+  }
+
+  .xmas-caption {
+    margin: 10px 2px 0;
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.35;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: baseline;
+  }
+
+  .xmas-caption strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  .xmas-caption .dot {
+    opacity: 0.6;
+  }
+
+  .xmas-caption a {
+    color: var(--green);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .xmas-caption a:hover {
+    text-decoration: underline;
+  }
+
+  .xmas-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--ink);
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--row);
+  }
+
+  .xmas-tag::before{
+    content:"";
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--green);
+    box-shadow: 0 0 0 2px rgba(20,83,45,0.12);
+  }
+
+  @media (max-width: 640px) {
+    .xmas-figure { margin: 14px auto 18px; }
+    .xmas-caption { font-size: 0.78rem; }
+  }
+</style>
+
+<figure class="xmas-figure">
+  <div class="xmas-figure-frame">
+    <img
+      src="https://images.unsplash.com/photo-1626003573503-2e088d82c647?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      alt="Wide overhead view of an NBA arena during a night game, with fans filling the stands and the court illuminated under bright lights."
+      loading="lazy"
+    />
+  </div>
+
+  <figcaption class="xmas-caption">
+   <span class="xmas-tag">Christmas Day National Spotlight</span>
+    <span><strong>Christmas Day games compress the league into a single national stage.</strong></span>
+    <span class="dot">•</span>
+    <span>Photo via Unsplash</span>
+  </figcaption>
+</figure>
