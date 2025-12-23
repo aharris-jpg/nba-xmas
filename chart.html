@@ -1,164 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NBA Christmas Day All-Time Winners Index</title>
+
 <style>
-  /* =========================
-     NBA CHRISTMAS DAY INDEX
-     Clean editorial Christmas palette (no gradients)
-     ========================= */
-
   :root {
-    --green: #14532d;     /* evergreen */
-    --red: #991b1b;       /* cranberry */
-    --gold: #b45309;      /* muted gold */
-    --ink: #0f172a;
-    --muted: #64748b;
-    --bg: #ffffff;
-    --row: #f8fafc;
+    --green: #0f5132;    /* evergreen */
+    --red: #9b1c1c;      /* cranberry */
+    --gold: #b45309;     /* muted gold */
+    --ink: #0b1220;
+    --muted: #6b7280;
     --border: #e5e7eb;
-    --hover: #f1f5f9;
+    --row: #f9fafb;
+    --hover: #f3f4f6;
+    --shadow: rgba(15, 23, 42, 0.08);
   }
 
-  .xmas-tabs {
-    max-width: 900px;
-    margin: 0 auto 32px;
+  body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #fff;
     color: var(--ink);
-    font-size: 14px;
+    padding: 24px;
   }
 
-  .xmas-title { margin-bottom: 10px; }
+  .xmas-tabs { max-width: 980px; margin: 0 auto; }
+
+  .xmas-title {
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(15,81,50,.18);
+  }
 
   .xmas-title h2 {
-    margin: 0 0 2px;
-    font-size: 1.4rem;
-    font-weight: 800;
+    margin: 0 0 6px;
+    font-size: 1.75rem;
+    font-weight: 900;
     letter-spacing: -0.02em;
   }
 
   .xmas-title p {
     margin: 0;
-    font-size: 0.86rem;
     color: var(--muted);
+    font-size: 0.95rem;
   }
 
-  /* Tabs */
   .xmas-tab-buttons {
-    display: inline-flex;
-    gap: 6px;
-    margin: 14px 0 12px;
+    display: flex;
+    gap: 10px;
+    margin: 16px 0 14px;
+    flex-wrap: wrap;
   }
 
   .xmas-tab-buttons button {
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     background: #fff;
-    padding: 6px 14px;
+    padding: 8px 18px;
     border-radius: 999px;
+    font-weight: 900;
     cursor: pointer;
-    font-size: 0.9rem;
-    color: var(--muted);
-    transition: border-color 0.12s ease, color 0.12s ease;
-    white-space: nowrap;
+    color: var(--ink);
+    transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
   }
 
+  .xmas-tab-buttons button:hover { transform: translateY(-1px); }
+
   .xmas-tab-buttons button.active {
-    color: var(--ink);
-    font-weight: 700;
     border-color: var(--green);
+    box-shadow: 0 8px 18px rgba(15,81,50,.18);
   }
 
   .xmas-tab { display: none; }
   .xmas-tab.active { display: block; }
 
-  /* Table */
   .xmas-table-wrapper {
-    border: 1px solid var(--border);
-    border-radius: 10px;
+    border: 2px solid rgba(15,81,50,.14);
+    border-radius: 16px;
     overflow-x: auto;
-    background: var(--bg);
-    box-shadow: 0 2px 10px rgba(2, 6, 23, 0.06);
-    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 12px 34px var(--shadow);
+    background: #fff;
   }
 
   table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.86rem;
-    min-width: 760px;
+    min-width: 900px;
   }
 
-  thead { background: #f1f5f9; }
+  th, td {
+    padding: 13px 14px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
 
   th {
-    text-align: left;
     text-transform: uppercase;
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     color: var(--muted);
-    letter-spacing: 0.05em;
-    padding: 8px;
-    border-bottom: 1px solid var(--border);
-    white-space: nowrap;
-  }
-
-  td {
-    padding: 8px;
-    border-bottom: 1px solid var(--border);
-    white-space: nowrap;
-    vertical-align: middle;
+    letter-spacing: .06em;
+    background: #f8fafc;
   }
 
   tbody tr:nth-child(even) { background: var(--row); }
   tbody tr:hover { background: var(--hover); }
 
-  .team-cell { display: flex; flex-direction: column; gap: 1px; }
+  .team-cell { display: flex; flex-direction: column; gap: 2px; }
+  .team-name { font-weight: 950; font-size: 0.95rem; }
+  .team-meta { font-size: .8rem; color: var(--muted); }
 
-  .team-name { font-weight: 800; font-size: 0.9rem; }
-  .team-meta { font-size: 0.74rem; color: var(--muted); }
-  .num { font-variant-numeric: tabular-nums; }
-
-  /* Rank badge */
   .rank {
-    font-weight: 900;
-    font-size: 0.78rem;
-    padding: 2px 8px;
+    font-weight: 950;
+    border: 2px solid var(--border);
     border-radius: 999px;
-    border: 1px solid var(--border);
-    background: #fff;
+    padding: 4px 10px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 26px;
+    min-width: 32px;
+    line-height: 1;
+    background: #fff;
   }
-
-  .rank-1 { color: var(--gold); border-color: rgba(180,83,9,0.45); }
+  .rank-1 { color: var(--gold); border-color: rgba(180,83,9,.35); }
   .rank-2 { color: #475569; }
-  .rank-3 { color: var(--red); border-color: rgba(153,27,27,0.35); }
-  .rank-bottom { color: var(--red); border-color: rgba(153,27,27,0.45); }
+  .rank-3 { color: var(--red); border-color: rgba(155,28,28,.25); }
+  .rank-bottom { color: var(--red); border-color: rgba(155,28,28,.35); }
 
-  /* Win % */
-  .win-high { color: var(--green); font-weight: 800; }
-  .win-mid { color: var(--gold); font-weight: 800; }
-  .win-low { color: var(--red); font-weight: 800; }
+  .win-high { color: var(--green); font-weight: 950; }
+  .win-mid  { color: var(--gold);  font-weight: 950; }
+  .win-low  { color: var(--red);   font-weight: 950; }
 
-  /* Avg margin */
-  .margin-pos { color: var(--green); font-weight: 800; }
-  .margin-neg { color: var(--red); font-weight: 800; }
+  .margin-pos { color: var(--green); font-weight: 950; }
+  .margin-neg { color: var(--red);   font-weight: 950; }
+  .margin-zero { color: #334155; font-weight: 900; }
 
-  /* Score */
-  .score { font-weight: 900; color: var(--green); }
+  .score { font-weight: 950; color: var(--green); }
+  .score-bad { font-weight: 950; color: var(--red); }
 
   .note {
-    font-size: 0.76rem;
+    margin-top: 10px;
+    font-size: .83rem;
     color: var(--muted);
-    margin-top: 8px;
     line-height: 1.4;
   }
 
-  .note a { color: #2563eb; text-decoration: none; }
-  .note a:hover { text-decoration: underline; }
+  .xmas-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 16px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .embed-wrap { display: flex; flex-direction: column; gap: 10px; }
+
+  .embed-btn {
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 2px solid var(--green);
+    background: #fff;
+    font-weight: 950;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .embed-btn:hover { box-shadow: 0 10px 18px rgba(15,81,50,.12); }
+
+  .embed-panel {
+    display: none;
+    border: 2px solid rgba(15,81,50,.14);
+    border-radius: 14px;
+    padding: 12px;
+    background: #fff;
+    box-shadow: 0 10px 22px var(--shadow);
+    max-width: 620px;
+  }
+  .embed-panel.active { display: block; }
+
+  .embed-panel p {
+    margin: 0 0 8px;
+    color: var(--muted);
+    font-size: .83rem;
+  }
+
+  .embed-panel textarea {
+    width: 100%;
+    height: 78px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px;
+    resize: none;
+    box-sizing: border-box;
+  }
+
+  .copy-row { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+
+  .copy-btn {
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 2px solid var(--border);
+    background: #fff;
+    cursor: pointer;
+    font-weight: 900;
+  }
+  .copy-btn:hover { border-color: var(--green); }
+
+  .copy-status { font-size: .82rem; color: var(--muted); }
+
+  .xmas-source {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    border: 2px solid rgba(15,81,50,.18);
+    border-radius: 999px;
+    padding: 10px 16px;
+    background: #fff;
+    box-shadow: 0 10px 22px rgba(2, 6, 23, 0.06);
+  }
+
+  .xmas-source img { height: 54px; width: auto; }
+  .xmas-source span { font-size: .85rem; font-weight: 950; color: var(--muted); }
 
   @media (max-width: 640px) {
-    table { font-size: 0.8rem; }
-    th, td { padding: 7px; }
+    body { padding: 14px; }
+    .xmas-title h2 { font-size: 1.45rem; }
   }
 </style>
+</head>
+
+<body>
 
 <div class="xmas-tabs" id="xmasIndex">
   <div class="xmas-title">
@@ -167,14 +243,14 @@
   </div>
 
   <div class="xmas-tab-buttons">
-    <button class="active" onclick="showXmasTab(0)">Top 10 Teams</button>
-    <button onclick="showXmasTab(1)">Bottom 5 Teams</button>
+    <button class="active" onclick="showTab(0)">Top 10 Teams</button>
+    <button onclick="showTab(1)">Bottom 5 Teams</button>
   </div>
 
-  <!-- TOP 10 TAB -->
+  <!-- TOP 10 -->
   <div class="xmas-tab active">
     <div class="xmas-table-wrapper">
-      <table>
+      <table aria-label="Top 10 NBA Christmas Day Teams">
         <thead>
           <tr>
             <th>Rank</th>
@@ -184,182 +260,123 @@
             <th>Win %</th>
             <th>Avg Margin</th>
             <th>Blowout Wins<br>(15+ pts)</th>
-            <th>Score<br>(0–100)</th>
+            <th>Performance Score</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><span class="rank rank-1">1</span></td>
-            <td>
-              <div class="team-cell">
-                <span class="team-name">Utah</span>
-                <span class="team-meta">First Christmas: 2018 • Latest: 2021</span>
-              </div>
-            </td>
-            <td class="num">2</td>
-            <td class="num">2–0</td>
-            <td class="win-high">100%</td>
-            <td class="margin-pos">+12.5</td>
-            <td class="num">1</td>
-            <td class="score num">100.0</td>
+            <td><div class="team-cell"><div class="team-name">LA Lakers</div><div class="team-meta">First: 2000 • Latest: 2024</div></div></td>
+            <td>25</td><td>8–17</td>
+            <td class="win-low">32%</td>
+            <td class="margin-neg">-3.0</td>
+            <td>2</td>
+            <td class="score">42.6</td>
           </tr>
 
           <tr>
             <td><span class="rank rank-2">2</span></td>
-            <td>
-              <div class="team-cell">
-                <span class="team-name">New Jersey</span>
-                <span class="team-meta">First Christmas: 2002 • Latest: 2002</span>
-              </div>
-            </td>
-            <td class="num">1</td>
-            <td class="num">1–0</td>
-            <td class="win-high">100%</td>
-            <td class="margin-pos">+36.0</td>
-            <td class="num">1</td>
-            <td class="score num">89.3</td>
+            <td><div class="team-cell"><div class="team-name">Boston Celtics</div><div class="team-meta">First: 2002 • Latest: 2024</div></div></td>
+            <td>15</td><td>7–8</td>
+            <td class="win-mid">47%</td>
+            <td class="margin-neg">-1.3</td>
+            <td>3</td>
+            <td class="score">35.2</td>
           </tr>
 
           <tr>
             <td><span class="rank rank-3">3</span></td>
-            <td>
-              <div class="team-cell">
-                <span class="team-name">Minnesota</span>
-                <span class="team-meta">First Christmas: 2016 • Latest: 2024</span>
-              </div>
-            </td>
-            <td class="num">3</td>
-            <td class="num">2–1</td>
-            <td class="win-high">67%</td>
-            <td class="margin-pos">+3.7</td>
-            <td class="num">1</td>
-            <td class="score num">80.5</td>
+            <td><div class="team-cell"><div class="team-name">Miami Heat</div><div class="team-meta">First: 2004 • Latest: 2023</div></div></td>
+            <td>13</td><td>12–1</td>
+            <td class="win-high">92%</td>
+            <td class="margin-pos">+6.9</td>
+            <td>2</td>
+            <td class="score">30.0</td>
           </tr>
 
           <tr>
             <td><span class="rank">4</span></td>
-            <td>
-              <div class="team-cell">
-                <span class="team-name">Miami</span>
-                <span class="team-meta">First Christmas: 2004 • Latest: 2023</span>
-              </div>
-            </td>
-            <td class="num">13</td>
-            <td class="num">12–1</td>
-            <td class="win-high">92%</td>
-            <td class="margin-pos">+6.9</td>
-            <td class="num">2</td>
-            <td class="score num">79.7</td>
+            <td><div class="team-cell"><div class="team-name">Golden State Warriors</div><div class="team-meta">First: 2010 • Latest: 2024</div></div></td>
+            <td>14</td><td>7–7</td>
+            <td class="win-mid">50%</td>
+            <td class="margin-neg">-3.6</td>
+            <td>0</td>
+            <td class="score">25.9</td>
           </tr>
 
           <tr>
             <td><span class="rank">5</span></td>
-            <td>
-              <div class="team-cell">
-                <span class="team-name">Detroit</span>
-                <span class="team-meta">First Christmas: 2002 • Latest: 2005</span>
-              </div>
-            </td>
-            <td class="num">3</td>
-            <td class="num">2–1</td>
-            <td class="win-high">67%</td>
-            <td class="margin-pos">+5.0</td>
-            <td class="num">1</td>
-            <td class="score num">78.0</td>
+            <td><div class="team-cell"><div class="team-name">New York Knicks</div><div class="team-meta">First: 2001 • Latest: 2024</div></div></td>
+            <td>14</td><td>6–8</td>
+            <td class="win-low">43%</td>
+            <td class="margin-neg">-3.1</td>
+            <td>0</td>
+            <td class="score">23.7</td>
           </tr>
 
           <tr>
             <td><span class="rank">6</span></td>
-            <td>
-              <div class="team-cell">
-                <span class="team-name">Chicago</span>
-                <span class="team-meta">First Christmas: 2010 • Latest: 2016</span>
-              </div>
-            </td>
-            <td class="num">7</td>
-            <td class="num">4–3</td>
+            <td><div class="team-cell"><div class="team-name">Chicago Bulls</div><div class="team-meta">First: 2010 • Latest: 2016</div></div></td>
+            <td>7</td><td>4–3</td>
             <td class="win-mid">57%</td>
             <td class="margin-neg">-0.4</td>
-            <td class="num">2</td>
-            <td class="score num">78.0</td>
+            <td>2</td>
+            <td class="score">21.2</td>
           </tr>
 
           <tr>
             <td><span class="rank">7</span></td>
-            <td>
-              <div class="team-cell">
-                <span class="team-name">Brooklyn</span>
-                <span class="team-meta">First Christmas: 2012 • Latest: 2021</span>
-              </div>
-            </td>
-            <td class="num">4</td>
-            <td class="num">2–2</td>
-            <td class="win-mid">50%</td>
-            <td class="margin-pos">+0.3</td>
-            <td class="num">1</td>
-            <td class="score num">68.9</td>
+            <td><div class="team-cell"><div class="team-name">LA Clippers</div><div class="team-meta">First: 2009 • Latest: 2020</div></div></td>
+            <td>9</td><td>6–3</td>
+            <td class="win-high">67%</td>
+            <td class="margin-pos">+3.4</td>
+            <td>1</td>
+            <td class="score">19.8</td>
           </tr>
 
           <tr>
             <td><span class="rank">8</span></td>
-            <td>
-              <div class="team-cell">
-                <span class="team-name">Boston</span>
-                <span class="team-meta">First Christmas: 2002 • Latest: 2024</span>
-              </div>
-            </td>
-            <td class="num">15</td>
-            <td class="num">7–8</td>
-            <td class="win-low">47%</td>
-            <td class="margin-neg">-1.3</td>
-            <td class="num">3</td>
-            <td class="score num">63.3</td>
+            <td><div class="team-cell"><div class="team-name">Oklahoma City Thunder</div><div class="team-meta">First: 2010 • Latest: 2018</div></div></td>
+            <td>9</td><td>6–3</td>
+            <td class="win-high">67%</td>
+            <td class="margin-pos">+5.7</td>
+            <td>1</td>
+            <td class="score">18.5</td>
           </tr>
 
           <tr>
             <td><span class="rank">9</span></td>
-            <td>
-              <div class="team-cell">
-                <span class="team-name">Houston</span>
-                <span class="team-meta">First Christmas: 2003 • Latest: 2019</span>
-              </div>
-            </td>
-            <td class="num">7</td>
-            <td class="num">5–2</td>
-            <td class="win-high">71%</td>
-            <td class="margin-pos">+5.6</td>
-            <td class="num">1</td>
-            <td class="score num">61.7</td>
+            <td><div class="team-cell"><div class="team-name">Cleveland Cavaliers</div><div class="team-meta">First: 2003 • Latest: 2017</div></div></td>
+            <td>8</td><td>4–4</td>
+            <td class="win-mid">50%</td>
+            <td class="margin-neg">-0.1</td>
+            <td>1</td>
+            <td class="score">18.5</td>
           </tr>
 
           <tr>
             <td><span class="rank">10</span></td>
-            <td>
-              <div class="team-cell">
-                <span class="team-name">LA Clippers</span>
-                <span class="team-meta">First Christmas: 2009 • Latest: 2020</span>
-              </div>
-            </td>
-            <td class="num">9</td>
-            <td class="num">6–3</td>
-            <td class="win-high">67%</td>
-            <td class="margin-pos">+3.4</td>
-            <td class="num">1</td>
-            <td class="score num">58.3</td>
+            <td><div class="team-cell"><div class="team-name">San Antonio Spurs</div><div class="team-meta">First: 2005 • Latest: 2024</div></div></td>
+            <td>7</td><td>2–5</td>
+            <td class="win-low">29%</td>
+            <td class="margin-neg">-3.3</td>
+            <td>1</td>
+            <td class="score">18.4</td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <div class="note">
-      Score is a 0–100 index combining win percentage (40%), average point differential (35%), and share of wins that were blowouts (15+ points) (25%). Avg margin shown is per game (positive = outscored opponent).
+      Performance Score reflects normalized Christmas Day performance (win percentage, average point differential, and blowout wins — defined as victories by 15+ points),
+      with a games-played weighting applied to balance performance and reliability.
     </div>
   </div>
 
-  <!-- BOTTOM 5 TAB -->
+  <!-- BOTTOM 5 -->
   <div class="xmas-tab">
     <div class="xmas-table-wrapper">
-      <table>
+      <table aria-label="Bottom 5 NBA Christmas Day Teams">
         <thead>
           <tr>
             <th>Rank</th>
@@ -369,107 +386,134 @@
             <th>Win %</th>
             <th>Avg Margin</th>
             <th>Blowout Wins<br>(15+ pts)</th>
-            <th>Score<br>(0–100)</th>
+            <th>Performance Score</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><span class="rank rank-bottom">1</span></td>
-            <td>
-              <div class="team-cell">
-                <span class="team-name">Seattle</span>
-                <span class="team-meta">First Christmas: 2007 • Latest: 2007</span>
-              </div>
-            </td>
-            <td class="num">1</td>
-            <td class="num">0–1</td>
+            <td><div class="team-cell"><div class="team-name">Seattle SuperSonics</div><div class="team-meta">First: 2007 • Latest: 2007</div></div></td>
+            <td>1</td><td>0–1</td>
             <td class="win-low">0%</td>
             <td class="margin-neg">-10.0</td>
-            <td class="num">0</td>
-            <td class="score num" style="color: var(--red);">0.0</td>
+            <td>0</td>
+            <td class="score-bad">2.3</td>
           </tr>
 
           <tr>
             <td><span class="rank rank-bottom">2</span></td>
-            <td>
-              <div class="team-cell">
-                <span class="team-name">Toronto</span>
-                <span class="team-meta">First Christmas: 2001 • Latest: 2019</span>
-              </div>
-            </td>
-            <td class="num">2</td>
-            <td class="num">0–2</td>
+            <td><div class="team-cell"><div class="team-name">Memphis Grizzlies</div><div class="team-meta">First: 2022 • Latest: 2022</div></div></td>
+            <td>1</td><td>0–1</td>
             <td class="win-low">0%</td>
-            <td class="margin-neg">-12.0</td>
-            <td class="num">0</td>
-            <td class="score num" style="color: var(--red);">3.8</td>
+            <td class="margin-neg">-14.0</td>
+            <td>0</td>
+            <td class="score-bad">2.7</td>
           </tr>
 
           <tr>
             <td><span class="rank rank-bottom">3</span></td>
-            <td>
-              <div class="team-cell">
-                <span class="team-name">Atlanta</span>
-                <span class="team-meta">First Christmas: 2021 • Latest: 2021</span>
-              </div>
-            </td>
-            <td class="num">1</td>
-            <td class="num">0–1</td>
+            <td><div class="team-cell"><div class="team-name">Atlanta Hawks</div><div class="team-meta">First: 2021 • Latest: 2021</div></div></td>
+            <td>1</td><td>0–1</td>
             <td class="win-low">0%</td>
             <td class="margin-neg">-14.0</td>
-            <td class="num">0</td>
-            <td class="score num" style="color: var(--red);">7.6</td>
+            <td>0</td>
+            <td class="score-bad">2.7</td>
           </tr>
 
           <tr>
             <td><span class="rank rank-bottom">4</span></td>
-            <td>
-              <div class="team-cell">
-                <span class="team-name">Memphis</span>
-                <span class="team-meta">First Christmas: 2022 • Latest: 2022</span>
-              </div>
-            </td>
-            <td class="num">1</td>
-            <td class="num">0–1</td>
+            <td><div class="team-cell"><div class="team-name">Toronto Raptors</div><div class="team-meta">First: 2001 • Latest: 2019</div></div></td>
+            <td>2</td><td>0–2</td>
             <td class="win-low">0%</td>
-            <td class="margin-neg">-14.0</td>
-            <td class="num">0</td>
-            <td class="score num" style="color: var(--red);">7.6</td>
+            <td class="margin-neg">-12.0</td>
+            <td>0</td>
+            <td class="score-bad">4.3</td>
           </tr>
 
           <tr>
             <td><span class="rank rank-bottom">5</span></td>
-            <td>
-              <div class="team-cell">
-                <span class="team-name">New Orleans</span>
-                <span class="team-meta">First Christmas: 2008 • Latest: 2020</span>
-              </div>
-            </td>
-            <td class="num">4</td>
-            <td class="num">1–3</td>
-            <td class="win-low">25%</td>
-            <td class="margin-neg">-6.8</td>
-            <td class="num">0</td>
-            <td class="score num" style="color: var(--red);">21.0</td>
+            <td><div class="team-cell"><div class="team-name">Indiana Pacers</div><div class="team-meta">First: 2000 • Latest: 2004</div></div></td>
+            <td>2</td><td>1–1</td>
+            <td class="win-mid">50%</td>
+            <td class="margin-pos">+2.5</td>
+            <td>0</td>
+            <td class="score-bad">4.4</td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <div class="note">
-      Rank 1 here marks the weakest overall Christmas Day performance in the index once win rate, average margin, and blowout share are combined.
+      Rank 1 here marks the weakest overall Christmas Day performance once win rate, average margin, and blowout outcomes are combined and weighted by games played.
+    </div>
+  </div>
+
+  <div class="xmas-footer">
+    <div class="embed-wrap">
+      <button class="embed-btn" type="button" onclick="toggleEmbed()">
+        Get embed code <span aria-hidden="true">▼</span>
+      </button>
+
+      <div class="embed-panel" id="embedPanel" aria-live="polite">
+        <p>Copy and paste this iframe into any article or webpage:</p>
+        <textarea id="xmasEmbedCode" readonly><iframe src="https://aharris-jpg.github.io/nba-xmas/chart.html" width="100%" height="980" style="border:0;border-radius:16px;overflow:hidden;"></iframe></textarea>
+        <div class="copy-row">
+          <button class="copy-btn" type="button" onclick="copyEmbed()">Copy embed code</button>
+          <span class="copy-status" id="copyStatus"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="xmas-source">
+      <img src="https://i.postimg.cc/5NMxdFLc/download-1.png" alt="Action Network" title="Action Network">
+      <span>Source: Action Network</span>
     </div>
   </div>
 </div>
 
 <script>
-  function showXmasTab(index) {
+  function showTab(i) {
     const root = document.getElementById('xmasIndex');
     const tabs = root.querySelectorAll('.xmas-tab');
     const buttons = root.querySelectorAll('.xmas-tab-buttons button');
-    tabs.forEach(t => t.classList.remove('active'));
-    buttons.forEach(b => b.classList.remove('active'));
-    tabs[index].classList.add('active');
-    buttons[index].classList.add('active');
+
+    tabs.forEach((t, idx) => t.classList.toggle('active', idx === i));
+    buttons.forEach((b, idx) => b.classList.toggle('active', idx === i));
+  }
+
+  function toggleEmbed() {
+    const panel = document.getElementById('embedPanel');
+    panel.classList.toggle('active');
+  }
+
+  function copyEmbed() {
+    const ta = document.getElementById('xmasEmbedCode');
+    const status = document.getElementById('copyStatus');
+    ta.select();
+    ta.setSelectionRange(0, 99999);
+
+    const text = ta.value;
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(() => {
+        status.textContent = "Copied.";
+        setTimeout(() => status.textContent = "", 1400);
+      }).catch(() => {
+        status.textContent = "Copy failed — please copy manually.";
+        setTimeout(() => status.textContent = "", 2200);
+      });
+    } else {
+      try {
+        document.execCommand('copy');
+        status.textContent = "Copied.";
+        setTimeout(() => status.textContent = "", 1400);
+      } catch (e) {
+        status.textContent = "Copy failed — please copy manually.";
+        setTimeout(() => status.textContent = "", 2200);
+      }
+    }
   }
 </script>
+
+</body>
+</html>
