@@ -107,7 +107,19 @@
   tbody tr:nth-child(even) { background: var(--row); }
   tbody tr:hover { background: var(--hover); }
 
+  /* ✅ UPDATED: allow logo + existing team text layout */
   .team-cell { display: flex; flex-direction: column; gap: 2px; }
+  .team-row { display: inline-flex; align-items: center; gap: 10px; }
+  .team-logo {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    border-radius: 6px;
+    border: 1px solid rgba(229,231,235,.85);
+    background: #fff;
+    flex: 0 0 auto;
+  }
+
   .team-name { font-weight: 950; font-size: 0.95rem; }
   .team-meta { font-size: .8rem; color: var(--muted); }
 
@@ -266,102 +278,182 @@
         <tbody>
           <tr>
             <td><span class="rank rank-1">1</span></td>
-            <td><div class="team-cell"><div class="team-name">LA Lakers</div><div class="team-meta">First: 2000 • Latest: 2024</div></div></td>
-            <td>25</td><td>8–17</td>
-            <td class="win-low">32%</td>
-            <td class="margin-neg">-3.0</td>
+            <td>
+              <div class="team-cell">
+                <div class="team-row">
+                  <img class="team-logo" src="https://a.espncdn.com/i/teamlogos/nba/500/MIA.png" alt="Miami Heat logo" loading="lazy">
+                  <div class="team-name">Miami Heat</div>
+                </div>
+                <div class="team-meta">First: 2004 • Latest: 2023</div>
+              </div>
+            </td>
+            <td>13</td><td>12–1</td>
+            <td class="win-high">92%</td>
+            <td class="margin-neg">-6.85</td>
             <td>2</td>
-            <td class="score">42.6</td>
+            <td class="score">44.2</td>
           </tr>
 
           <tr>
             <td><span class="rank rank-2">2</span></td>
-            <td><div class="team-cell"><div class="team-name">Boston Celtics</div><div class="team-meta">First: 2002 • Latest: 2024</div></div></td>
-            <td>15</td><td>7–8</td>
-            <td class="win-mid">47%</td>
-            <td class="margin-neg">-1.3</td>
-            <td>3</td>
-            <td class="score">35.2</td>
+            <td>
+              <div class="team-cell">
+                <div class="team-row">
+                  <img class="team-logo" src="https://a.espncdn.com/i/teamlogos/nba/500/LAL.png" alt="Los Angeles Lakers logo" loading="lazy">
+                  <div class="team-name">LA Lakers</div>
+                </div>
+                <div class="team-meta">First: 2000 • Latest: 2024</div>
+              </div>
+            </td>
+            <td>25</td><td>8–17</td>
+            <td class="win-low">32%</td>
+            <td class="margin-pos">+3.00</td>
+            <td>2</td>
+            <td class="score">42.1</td>
           </tr>
 
           <tr>
             <td><span class="rank rank-3">3</span></td>
-            <td><div class="team-cell"><div class="team-name">Miami Heat</div><div class="team-meta">First: 2004 • Latest: 2023</div></div></td>
-            <td>13</td><td>12–1</td>
-            <td class="win-high">92%</td>
-            <td class="margin-pos">+6.9</td>
-            <td>2</td>
-            <td class="score">30.0</td>
+            <td>
+              <div class="team-cell">
+                <div class="team-row">
+                  <img class="team-logo" src="https://a.espncdn.com/i/teamlogos/nba/500/BOS.png" alt="Boston Celtics logo" loading="lazy">
+                  <div class="team-name">Boston Celtics</div>
+                </div>
+                <div class="team-meta">First: 2002 • Latest: 2024</div>
+              </div>
+            </td>
+            <td>15</td><td>7–8</td>
+            <td class="win-mid">47%</td>
+            <td class="margin-pos">+1.27</td>
+            <td>3</td>
+            <td class="score">41.7</td>
           </tr>
 
           <tr>
             <td><span class="rank">4</span></td>
-            <td><div class="team-cell"><div class="team-name">Golden State Warriors</div><div class="team-meta">First: 2010 • Latest: 2024</div></div></td>
+            <td>
+              <div class="team-cell">
+                <div class="team-row">
+                  <img class="team-logo" src="https://a.espncdn.com/i/teamlogos/nba/500/GSW.png" alt="Golden State Warriors logo" loading="lazy">
+                  <div class="team-name">Golden State Warriors</div>
+                </div>
+                <div class="team-meta">First: 2010 • Latest: 2024</div>
+              </div>
+            </td>
             <td>14</td><td>7–7</td>
             <td class="win-mid">50%</td>
-            <td class="margin-neg">-3.6</td>
+            <td class="margin-pos">+3.57</td>
             <td>0</td>
-            <td class="score">25.9</td>
+            <td class="score">36.7</td>
           </tr>
 
           <tr>
             <td><span class="rank">5</span></td>
-            <td><div class="team-cell"><div class="team-name">New York Knicks</div><div class="team-meta">First: 2001 • Latest: 2024</div></div></td>
-            <td>14</td><td>6–8</td>
-            <td class="win-low">43%</td>
-            <td class="margin-neg">-3.1</td>
-            <td>0</td>
-            <td class="score">23.7</td>
+            <td>
+              <div class="team-cell">
+                <div class="team-row">
+                  <img class="team-logo" src="https://a.espncdn.com/i/teamlogos/nba/500/CHI.png" alt="Chicago Bulls logo" loading="lazy">
+                  <div class="team-name">Chicago Bulls</div>
+                </div>
+                <div class="team-meta">First: 2010 • Latest: 2016</div>
+              </div>
+            </td>
+            <td>7</td><td>4–3</td>
+            <td class="win-mid">57%</td>
+            <td class="margin-pos">+0.43</td>
+            <td>2</td>
+            <td class="score">34.2</td>
           </tr>
 
           <tr>
             <td><span class="rank">6</span></td>
-            <td><div class="team-cell"><div class="team-name">Chicago Bulls</div><div class="team-meta">First: 2010 • Latest: 2016</div></div></td>
-            <td>7</td><td>4–3</td>
-            <td class="win-mid">57%</td>
-            <td class="margin-neg">-0.4</td>
-            <td>2</td>
-            <td class="score">21.2</td>
+            <td>
+              <div class="team-cell">
+                <div class="team-row">
+                  <img class="team-logo" src="https://a.espncdn.com/i/teamlogos/nba/500/NYK.png" alt="New York Knicks logo" loading="lazy">
+                  <div class="team-name">New York Knicks</div>
+                </div>
+                <div class="team-meta">First: 2001 • Latest: 2024</div>
+              </div>
+            </td>
+            <td>14</td><td>6–8</td>
+            <td class="win-low">43%</td>
+            <td class="margin-pos">+3.07</td>
+            <td>0</td>
+            <td class="score">33.3</td>
           </tr>
 
           <tr>
             <td><span class="rank">7</span></td>
-            <td><div class="team-cell"><div class="team-name">LA Clippers</div><div class="team-meta">First: 2009 • Latest: 2020</div></div></td>
+            <td>
+              <div class="team-cell">
+                <div class="team-row">
+                  <img class="team-logo" src="https://a.espncdn.com/i/teamlogos/nba/500/LAC.png" alt="LA Clippers logo" loading="lazy">
+                  <div class="team-name">LA Clippers</div>
+                </div>
+                <div class="team-meta">First: 2009 • Latest: 2020</div>
+              </div>
+            </td>
             <td>9</td><td>6–3</td>
             <td class="win-high">67%</td>
-            <td class="margin-pos">+3.4</td>
+            <td class="margin-neg">-3.44</td>
             <td>1</td>
-            <td class="score">19.8</td>
+            <td class="score">32.6</td>
           </tr>
 
           <tr>
             <td><span class="rank">8</span></td>
-            <td><div class="team-cell"><div class="team-name">Oklahoma City Thunder</div><div class="team-meta">First: 2010 • Latest: 2018</div></div></td>
+            <td>
+              <div class="team-cell">
+                <div class="team-row">
+                  <img class="team-logo" src="https://a.espncdn.com/i/teamlogos/nba/500/OKC.png" alt="Oklahoma City Thunder logo" loading="lazy">
+                  <div class="team-name">Oklahoma City Thunder</div>
+                </div>
+                <div class="team-meta">First: 2010 • Latest: 2018</div>
+              </div>
+            </td>
             <td>9</td><td>6–3</td>
             <td class="win-high">67%</td>
-            <td class="margin-pos">+5.7</td>
+            <td class="margin-neg">-5.67</td>
             <td>1</td>
-            <td class="score">18.5</td>
+            <td class="score">30.6</td>
           </tr>
 
           <tr>
             <td><span class="rank">9</span></td>
-            <td><div class="team-cell"><div class="team-name">Cleveland Cavaliers</div><div class="team-meta">First: 2003 • Latest: 2017</div></div></td>
+            <td>
+              <div class="team-cell">
+                <div class="team-row">
+                  <img class="team-logo" src="https://a.espncdn.com/i/teamlogos/nba/500/CLE.png" alt="Cleveland Cavaliers logo" loading="lazy">
+                  <div class="team-name">Cleveland Cavaliers</div>
+                </div>
+                <div class="team-meta">First: 2003 • Latest: 2017</div>
+              </div>
+            </td>
             <td>8</td><td>4–4</td>
             <td class="win-mid">50%</td>
-            <td class="margin-neg">-0.1</td>
+            <td class="margin-pos">+0.13</td>
             <td>1</td>
-            <td class="score">18.5</td>
+            <td class="score">30.0</td>
           </tr>
 
           <tr>
             <td><span class="rank">10</span></td>
-            <td><div class="team-cell"><div class="team-name">San Antonio Spurs</div><div class="team-meta">First: 2005 • Latest: 2024</div></div></td>
-            <td>7</td><td>2–5</td>
-            <td class="win-low">29%</td>
-            <td class="margin-neg">-3.3</td>
+            <td>
+              <div class="team-cell">
+                <div class="team-row">
+                  <img class="team-logo" src="https://a.espncdn.com/i/teamlogos/nba/500/HOU.png" alt="Houston Rockets logo" loading="lazy">
+                  <div class="team-name">Houston Rockets</div>
+                </div>
+                <div class="team-meta">First: 2003 • Latest: 2019</div>
+              </div>
+            </td>
+            <td>7</td><td>5–2</td>
+            <td class="win-high">71%</td>
+            <td class="margin-neg">-5.57</td>
             <td>1</td>
-            <td class="score">18.4</td>
+            <td class="score">29.7</td>
           </tr>
         </tbody>
       </table>
@@ -392,52 +484,92 @@
         <tbody>
           <tr>
             <td><span class="rank rank-bottom">1</span></td>
-            <td><div class="team-cell"><div class="team-name">Seattle SuperSonics</div><div class="team-meta">First: 2007 • Latest: 2007</div></div></td>
+            <td>
+              <div class="team-cell">
+                <div class="team-row">
+                  <img class="team-logo" src="https://upload.wikimedia.org/wikipedia/en/0/02/Seattle_SuperSonics_logo.png" alt="Seattle SuperSonics logo" loading="lazy">
+                  <div class="team-name">Seattle SuperSonics</div>
+                </div>
+                <div class="team-meta">First: 2007 • Latest: 2007</div>
+              </div>
+            </td>
             <td>1</td><td>0–1</td>
             <td class="win-low">0%</td>
-            <td class="margin-neg">-10.0</td>
+            <td class="margin-pos">+10.00</td>
             <td>0</td>
-            <td class="score-bad">2.3</td>
+            <td class="score-bad">8.2</td>
           </tr>
 
           <tr>
             <td><span class="rank rank-bottom">2</span></td>
-            <td><div class="team-cell"><div class="team-name">Memphis Grizzlies</div><div class="team-meta">First: 2022 • Latest: 2022</div></div></td>
+            <td>
+              <div class="team-cell">
+                <div class="team-row">
+                  <img class="team-logo" src="https://a.espncdn.com/i/teamlogos/nba/500/ATL.png" alt="Atlanta Hawks logo" loading="lazy">
+                  <div class="team-name">Atlanta Hawks</div>
+                </div>
+                <div class="team-meta">First: 2021 • Latest: 2021</div>
+              </div>
+            </td>
             <td>1</td><td>0–1</td>
             <td class="win-low">0%</td>
-            <td class="margin-neg">-14.0</td>
+            <td class="margin-pos">+14.00</td>
             <td>0</td>
-            <td class="score-bad">2.7</td>
+            <td class="score-bad">9.7</td>
           </tr>
 
           <tr>
             <td><span class="rank rank-bottom">3</span></td>
-            <td><div class="team-cell"><div class="team-name">Atlanta Hawks</div><div class="team-meta">First: 2021 • Latest: 2021</div></div></td>
+            <td>
+              <div class="team-cell">
+                <div class="team-row">
+                  <img class="team-logo" src="https://a.espncdn.com/i/teamlogos/nba/500/MEM.png" alt="Memphis Grizzlies logo" loading="lazy">
+                  <div class="team-name">Memphis Grizzlies</div>
+                </div>
+                <div class="team-meta">First: 2022 • Latest: 2022</div>
+              </div>
+            </td>
             <td>1</td><td>0–1</td>
             <td class="win-low">0%</td>
-            <td class="margin-neg">-14.0</td>
+            <td class="margin-pos">+14.00</td>
             <td>0</td>
-            <td class="score-bad">2.7</td>
+            <td class="score-bad">9.7</td>
           </tr>
 
           <tr>
             <td><span class="rank rank-bottom">4</span></td>
-            <td><div class="team-cell"><div class="team-name">Toronto Raptors</div><div class="team-meta">First: 2001 • Latest: 2019</div></div></td>
+            <td>
+              <div class="team-cell">
+                <div class="team-row">
+                  <img class="team-logo" src="https://a.espncdn.com/i/teamlogos/nba/500/TOR.png" alt="Toronto Raptors logo" loading="lazy">
+                  <div class="team-name">Toronto Raptors</div>
+                </div>
+                <div class="team-meta">First: 2001 • Latest: 2019</div>
+              </div>
+            </td>
             <td>2</td><td>0–2</td>
             <td class="win-low">0%</td>
-            <td class="margin-neg">-12.0</td>
+            <td class="margin-pos">+12.00</td>
             <td>0</td>
-            <td class="score-bad">4.3</td>
+            <td class="score-bad">11.8</td>
           </tr>
 
           <tr>
             <td><span class="rank rank-bottom">5</span></td>
-            <td><div class="team-cell"><div class="team-name">Indiana Pacers</div><div class="team-meta">First: 2000 • Latest: 2004</div></div></td>
+            <td>
+              <div class="team-cell">
+                <div class="team-row">
+                  <img class="team-logo" src="https://a.espncdn.com/i/teamlogos/nba/500/IND.png" alt="Indiana Pacers logo" loading="lazy">
+                  <div class="team-name">Indiana Pacers</div>
+                </div>
+                <div class="team-meta">First: 2000 • Latest: 2004</div>
+              </div>
+            </td>
             <td>2</td><td>1–1</td>
             <td class="win-mid">50%</td>
-            <td class="margin-pos">+2.5</td>
+            <td class="margin-neg">-2.50</td>
             <td>0</td>
-            <td class="score-bad">4.4</td>
+            <td class="score-bad">13.9</td>
           </tr>
         </tbody>
       </table>
